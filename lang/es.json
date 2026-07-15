@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "idioma": "es",
+    "nota": "Archivo fuente para traductores. Cada clave corresponde a un bloque de la web (los comentarios PLACEHOLDER_TEXT de index.html usan los mismos nombres). Para añadir un idioma: duplica este archivo como en.json, it.json, fr.json o de.json, traduce los valores y sigue docs/I18N.md. NO se carga en la web actual: la versión en español vive en el HTML."
+  },
+  "meta": {
+    "title": "Guardianes de Susurros — Del piloto automático al latido | Vivamos Despiertos",
+    "description": "La experiencia para una verdadera conexión humana. 48 cartas para salir de la prisa y el móvil, reír a carcajadas y volver a conectar. Envío 24/48h · De 1 a 10+ jugadores · A partir de 8 años."
+  },
+  "apertura": {
+    "marca": "Vivamos Despiertos presenta",
+    "titulo": "Guardianes de Susurros",
+    "subtitulo": "Un juego para volver a estar aquí.",
+    "pista_scroll": "Desliza para despertar"
+  },
+  "nav": {
+    "como_funciona": "Cómo funciona",
+    "carta_semana": "La Carta de la Semana",
+    "testimonios": "Testimonios",
+    "faq": "Preguntas",
+    "comprar": "Conseguir el juego"
+  },
+  "hero": {
+    "eyebrow": "La experiencia para una verdadera conexión humana",
+    "titular": "Del piloto automático al latido.",
+    "subtitulo": "El juego que os saca de la prisa y el móvil, para devolveros las risas a carcajadas y la conexión de verdad.",
+    "claim": "No predice el futuro. Te despierta en el presente.",
+    "cta": "Quiero jugar ahora · 49€",
+    "cta_secundario": "¿Cómo funciona? ↓",
+    "microtexto": "📦 Envío 24/48h | 👥 De 1 a 10+ jugadores | 🎂 A partir de 8 años"
+  },
+  "testimonios": {
+    "titular": "Lo que dicen los que ya han jugado.",
+    "items": [
+      { "texto": "«Hacía meses que no me reía hasta que me doliera la barriga.»", "autor": "— María y Carlos" },
+      { "texto": "«La mejor sobremesa que hemos tenido en años. Sin móviles, increíble.»", "autor": "— Grupo de Bilbao" },
+      { "texto": "«Mis hijos de 10 y 14 años… ¡y los dos riendo a carcajadas! No tiene precio.»", "autor": "— Laura" },
+      { "texto": "«Mi ritual de los domingos por la mañana. Me reconecta conmigo misma.»", "autor": "— Ana" }
+    ]
+  },
+  "faq": {
+    "titular": "Preguntas frecuentes",
+    "items": [
+      { "pregunta": "¿Necesito saber de meditación o crecimiento personal?", "respuesta": "Para nada. Si sabes reír y hablar, sabes jugar." },
+      { "pregunta": "¿Y si somos más de 10?", "respuesta": "Podéis jugar todos juntos o dividiros en grupos de 6-8. ¡Cuanta más gente, más divertido!" },
+      { "pregunta": "¿Puedo jugar solo/a?", "respuesta": "Sí. En el librito encontrarás un ritual completo para jugar en solitario con tu diario." },
+      { "pregunta": "¿Qué pasa si no nos gusta?", "respuesta": "Si en la primera partida no os saca una sonrisa o provoca una conversación profunda, te devolvemos el dinero. Sin preguntas." },
+      { "pregunta": "¿Es apto para niños?", "respuesta": "Sí, a partir de 8 años. De hecho, ellos son los maestros del juego." }
+    ]
+  },
+  "compra": {
+    "titular": "Lo que vas a recibir en casa:",
+    "cta": "Comprar Guardianes de Susurros (49€)"
+  },
+  "footer": {
+    "marca": "Guardianes de Susurros · una experiencia de Vivamos Despiertos",
+    "contacto": "Contacto",
+    "configurar_cookies": "Configurar cookies",
+    "b2b": "Escríbenos aquí para hablar de colaboraciones profesionales"
+  }
+}

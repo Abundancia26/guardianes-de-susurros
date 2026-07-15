@@ -1,0 +1,5 @@
+# Guardianes de Susurros — https://guardianesdesusurros.com
+User-agent: *
+Allow: /
+
+Sitemap: https://guardianesdesusurros.com/sitemap.xml

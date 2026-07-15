@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Las páginas legales llevan noindex (decisión del proyecto) y por eso no se listan. -->
+  <url>
+    <loc>https://guardianesdesusurros.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <!-- i18n: al publicar nuevos idiomas, añade aquí sus xhtml:link hreflang y sus <url> (ver docs/I18N.md) -->
+    <xhtml:link rel="alternate" hreflang="es" href="https://guardianesdesusurros.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guardianesdesusurros.com/"/>
+  </url>
+</urlset>
