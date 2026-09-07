@@ -148,29 +148,60 @@ const CONTENIDO = {
   testimonios: {
     autoplay: false,
     intervaloMs: 6000,
+    /* Citas textuales de la partida grabada el 28 de junio de 2026.
+       Cuando subas los retratos a assets/photos/, cambia "texto" por "foto"
+       y añade  imagen: "assets/photos/testimonio-<nombre>.jpg"  en cada uno. */
     items: [
-      { tipo: "foto", imagen: "assets/placeholders/testimonio-1.jpg",
-        respaldo: "assets/photos/cartas-en-mano.jpg",
-        alt: "Pareja riendo mientras juega",
-        texto: "«Hacía meses que no me reía hasta que me doliera la barriga.»",
-        autor: "— María y Carlos" },
-      { tipo: "foto", imagen: "assets/placeholders/testimonio-2.jpg",
-        respaldo: "assets/photos/producto-completo.jpg",
-        alt: "Grupo de amigos en una sobremesa",
-        texto: "«La mejor sobremesa que hemos tenido en años. Sin móviles, increíble.»",
-        autor: "— Grupo de Bilbao" },
-      { tipo: "foto", imagen: "assets/placeholders/testimonio-3.jpg",
-        respaldo: "assets/photos/saquito-yute.jpg",
-        alt: "Familia con niños jugando",
-        texto: "«Mis hijos de 10 y 14 años… ¡y los dos riendo a carcajadas! No tiene precio.»",
-        autor: "— Laura" },
-      { tipo: "foto", imagen: "assets/placeholders/testimonio-4.jpg",
-        respaldo: "assets/photos/carta-gafas.jpg",
-        alt: "Persona escribiendo en su diario junto a una carta",
-        texto: "«Mi ritual de los domingos por la mañana. Me reconecta conmigo misma.»",
-        autor: "— Ana" }
-      /* ▸ AÑADIR AQUÍ los siguientes testimonios (foto, vídeo vertical o solo texto) */
+      { tipo: "texto",
+        texto: "«Vives muy en piloto automático y no nos paramos a pensar. Te pone en situaciones que en el día a día no te las planteas.»",
+        autor: "— Victoria" },
+      { tipo: "texto",
+        texto: "«Un despertar. Básicamente. Es conocerme más y darme cuenta de muchas cosas que no había visto.»",
+        autor: "— Adriana" },
+      { tipo: "texto",
+        texto: "«No me esperaba tantas risas. Me han llenado el corazón, de verdad.»",
+        autor: "— Chenia, 15 años" },
+      { tipo: "texto",
+        texto: "«Un grupo tan dispar, que no nos conocíamos casi, y jugamos como si nos conociéramos de toda la vida.»",
+        autor: "— Ans Kari" },
+      { tipo: "texto",
+        texto: "«Me voy muy feliz, con una sonrisa de oreja a oreja.»",
+        autor: "— Quima" },
+      { tipo: "texto",
+        texto: "«Así aprenden más sobre la familia, se quieren, aprenden a trabajar mejor en equipo.»",
+        autor: "— Victoria, 9 años" },
+      { tipo: "texto",
+        texto: "«Que lo juegue. Y que me invite.»",
+        autor: "— Jesús" }
+      /* ▸ Cuando exista el vídeo, añádelo el primero:
+         { tipo: "video", video: "assets/placeholders/video_testimonios.mp4",
+           poster: "assets/photos/testimonio-portada.jpg",
+           alt: "Testimonios de la partida del 28 de junio",
+           texto: "«Un despertar. Básicamente.»", autor: "— Los que ya han jugado" } */
     ]
+  },
+
+  /* — PREVENTA · lista de los primeros guardianes —
+     Fechas y bonus que se muestran en el bloque #lista y en el de compra.
+     Cuando el juego salga a la venta, pon activa: false y vuelve a poner
+     urlCompra con tu pasarela: los botones vuelven a llevar a la compra. */
+  preventa: {
+    activa: true,
+    fechaOnline: "1 de diciembre",
+    fechaPresencial: "28 y 29 de diciembre",
+    bonus: "3 meses gratis en la comunidad de Vivamos Despiertos"
+  },
+
+  /* — Formulario de la lista de espera —
+     ▸ REEMPLAZAR "accion" por la URL del formulario embebido de MailerLite.
+       Vacío = modo demostración: confirma en pantalla sin enviar nada. */
+  formularioLista: {
+    accion: "",
+    metodo: "POST",
+    campoEmail: "email",
+    urlGracias: "",
+    mensajeExito: "✦ Ya estás dentro. Te avisamos en cuanto abramos.",
+    mensajeError: "Algo ha fallado. Prueba de nuevo en un momento."
   },
 
   /* — Enlace del botón de compra —
@@ -338,6 +369,7 @@ window.addEventListener("DOMContentLoaded", () => {
   iniciarAnimacionesLanding();
   iniciarFAQ();
   iniciarFormularioCarta();
+  iniciarFormularioLista();
   iniciarCursor();
   iniciarNavegacion();
   iniciarTestimonios();
@@ -864,6 +896,61 @@ function iniciarFormularioCarta() {
       });
     }
     /* dejamos que el navegador envíe el formulario */
+  });
+}
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║ 9-bis · FORMULARIO "LISTA DE LOS PRIMEROS GUARDIANES"          ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+function iniciarFormularioLista() {
+  const form = $("#form-lista");
+  if (!form) return;
+  const mensaje = $("#form-lista-mensaje");
+  const textoOriginal = mensaje ? mensaje.textContent : "";
+  const cfg = CONTENIDO.formularioLista || {};
+
+  form.addEventListener("submit", (e) => {
+    const email = form.email.value.trim();
+    const consentimiento = $("#consentimiento-lista");
+
+    if (consentimiento && !consentimiento.checked) {
+      e.preventDefault();
+      mensaje.textContent = "Marca la casilla de privacidad para poder avisarte.";
+      mensaje.classList.add("captacion-error");
+      return;
+    }
+    if (!email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) === false) {
+      e.preventDefault();
+      mensaje.textContent = "Escribe un email válido para guardarte la plaza.";
+      mensaje.classList.add("captacion-error");
+      return;
+    }
+    mensaje.classList.remove("captacion-error");
+
+    if (!cfg.accion) {
+      e.preventDefault();
+      form.reset();
+      mensaje.textContent = cfg.mensajeExito;
+      mensaje.classList.add("captacion-exito");
+      setTimeout(() => {
+        mensaje.textContent = textoOriginal;
+        mensaje.classList.remove("captacion-exito");
+      }, 6000);
+      return;
+    }
+
+    form.action = cfg.accion;
+    form.method = cfg.metodo || "POST";
+    form.email.name = cfg.campoEmail || "email";
+    if (cfg.urlGracias) {
+      ["_next", "redirect", "success_url"].forEach((n) => {
+        if (!form.querySelector(`input[name="${n}"]`)) {
+          const i = document.createElement("input");
+          i.type = "hidden"; i.name = n; i.value = cfg.urlGracias;
+          form.appendChild(i);
+        }
+      });
+    }
   });
 }
 

@@ -1295,3 +1295,70 @@ body.sin-universo #interludio-logo { display: none; }
   background: rgba(42, 75, 60, 0.08);
 }
 */
+
+/* ═══════════════════════════════════════════════════════════════
+   BLOQUE 9.5 · LOS PRIMEROS GUARDIANES (lista de venta anticipada)
+   ═══════════════════════════════════════════════════════════════ */
+.bloque-lista{
+  background:var(--bosque-noche);
+  color:var(--pergamino);
+  padding-block:var(--bloque-y);
+  position:relative;
+}
+.bloque-lista::after{
+  content:"";position:absolute;inset:0;background-image:var(--grano);
+  opacity:.5;pointer-events:none;mix-blend-mode:overlay;
+}
+.bloque-lista > *{position:relative;z-index:1}
+.bloque-lista h2{color:var(--pergamino)}
+.bloque-lista h2 em{color:var(--dorado-claro)}
+.bloque-lista .eyebrow{color:var(--dorado)}
+.lista-intro{
+  max-width:52ch;margin:1.4rem auto 0;
+  color:var(--arena);font-size:clamp(1rem,1.6vw,1.12rem);line-height:1.7;
+}
+.lista-intro strong{color:var(--pergamino-alto)}
+
+.lista-fechas{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;
+  margin:2.4rem auto 0;
+}
+.lista-fecha{
+  border:1px solid rgba(226,201,141,.34);
+  border-radius:var(--radio-carta);
+  padding:1rem 1.5rem;text-align:center;min-width:11rem;
+  background:rgba(247,241,229,.04);
+}
+.lista-fecha-dia{
+  display:block;font-family:var(--f-display);
+  font-size:clamp(1.5rem,3.4vw,1.95rem);color:var(--dorado-claro);line-height:1.1;
+}
+.lista-fecha-txt{
+  display:block;margin-top:.35rem;font-family:var(--f-utilidad);
+  font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;color:var(--arena);
+}
+
+.lista-ventajas{
+  list-style:none;padding:0;margin:2.6rem auto 0;max-width:48ch;
+  display:grid;gap:1.05rem;
+}
+.lista-ventajas li{
+  position:relative;padding-left:1.9rem;
+  color:var(--arena);line-height:1.65;font-size:clamp(.97rem,1.5vw,1.05rem);
+}
+.lista-ventajas li::before{
+  content:"✦";position:absolute;left:0;top:.05em;color:var(--dorado);font-size:.95em;
+}
+.lista-ventajas strong{color:var(--pergamino-alto)}
+
+.bloque-lista .captacion-form{margin:2.8rem auto 0;max-width:32rem}
+.bloque-lista .captacion-consentimiento,
+.bloque-lista .captacion-nota{color:var(--arena)}
+.bloque-lista .captacion-consentimiento a{color:var(--dorado-claro)}
+#form-lista-mensaje{max-width:44ch;margin-inline:auto}
+
+@media (max-width:640px){
+  .lista-fecha{flex:1 1 100%;min-width:0}
+}
+.lista-intro-remate{margin-top:1rem;font-size:clamp(1.05rem,1.8vw,1.22rem)}
+.lista-intro-remate strong{color:var(--dorado-claro)}

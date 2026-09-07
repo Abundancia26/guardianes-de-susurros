@@ -200,7 +200,7 @@
         <a href="/en/" lang="en">EN</a>
       </nav>
       -->
-      <a href="#compra" class="boton boton-mini" data-pago>Compra el juego · 49€</a>
+      <a href="#lista" class="boton boton-mini">Dejar mi nombre</a>
       <button id="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-principal">
         <span></span><span></span><span></span>
       </button>
@@ -242,11 +242,11 @@
         <!-- PLACEHOLDER_TEXT: HERO_CLAIM -->
         <p class="hero-claim revela">No predice el futuro. <strong>Te despierta en el presente.</strong></p>
         <div class="hero-acciones revela">
-          <a href="#compra" class="boton boton-dorado" data-pago>Quiero jugar ahora · 49€</a>
+          <a href="#lista" class="boton boton-dorado">Quiero ser de los primeros</a>
           <a href="#como-funciona" class="enlace-suave">¿Cómo funciona? ↓</a>
         </div>
         <!-- PLACEHOLDER_TEXT: HERO_MICROTEXTO -->
-        <p class="hero-nota revela">📦 Envío 24/48h &nbsp;|&nbsp; 👥 De 1 a 10+ jugadores &nbsp;|&nbsp; 🎂 A partir de 8 años</p>
+        <p class="hero-nota revela">✦ El saquito se abre el 1 de diciembre &nbsp;|&nbsp; 👥 De 1 a 10+ jugadores &nbsp;|&nbsp; 🎂 A partir de 8 años</p>
       </div>
     </section>
 
@@ -659,19 +659,77 @@
             <li><strong>La guía «El Mapa del Juego»:</strong> con ideas para jugar en grupo, en pareja o incluso en solitario.</li>
           </ul>
           <div class="compra-badges revela">
-            <span class="badge">📦 Envío 24/48h</span>
-            <span class="badge">🔒 Pago 100% seguro</span>
-            <span class="badge badge-bonus">🎁 BONUS: 1 mes GRATIS en la comunidad de Vivamos Despiertos en Skool (valor 19€)</span>
+            <span class="badge">📦 En tu casa en 24/48h desde el 1 de diciembre</span>
+            <span class="badge">🔒 Dejar tu nombre hoy no cuesta nada</span>
+            <span class="badge badge-bonus">🎁 SOLO EN EL LANZAMIENTO: 3 meses en la comunidad de Vivamos Despiertos. Después, 1 mes.</span>
             <span class="badge badge-impacto">💚 IMPACTO: 1% para la creación de la Fundación Vivamos Despiertos</span>
           </div>
           <!-- PLACEHOLDER_TEXT: COMPRA_PRECIO -->
-          <p class="compra-precio revela">Todo esto por <strong>49€.</strong></p>
-          <p class="compra-sub revela">(Menos que una cena fuera, pero con un recuerdo que os va a durar toda la vida).</p>
-          <a href="#" class="boton boton-dorado boton-gigante revela" id="boton-comprar">
-            Llévate la experiencia a casa · 49€
+          <p class="compra-precio revela">Todo esto por <strong>49€.</strong> Desde el 1 de diciembre.</p>
+          <p class="compra-sub revela">Menos que una cena fuera, y el recuerdo dura bastante más. Hoy todavía no se puede comprar: hoy solo se deja el nombre.</p>
+          <a href="#lista" class="boton boton-dorado boton-gigante revela">
+            Dejar mi nombre
           </a>
           <p class="compra-garantia revela">De 1 a 10+ jugadores · A partir de 8 años · Sin pantallas, prometido.</p>
         </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         BLOQUE 9.5 · LOS PRIMEROS GUARDIANES — lista de venta anticipada
+         Fechas y bonus editables en main.js → CONTENIDO.preventa
+    ═══════════════════════════════════════════ -->
+    <section id="lista" class="bloque bloque-lista">
+      <div class="contenedor estrecho">
+        <!-- PLACEHOLDER_TEXT: LISTA_EYEBROW -->
+        <p class="eyebrow centrado revela">Todavía no hemos abierto el saquito</p>
+        <!-- PLACEHOLDER_TEXT: LISTA_TITULAR -->
+        <h2 class="centrado revela">Los primeros<br><em>guardianes.</em></h2>
+        <!-- PLACEHOLDER_TEXT: LISTA_INTRO -->
+        <p class="lista-intro centrado revela">
+          Lo primero que se hace en una partida es escribir un deseo en un papelito y doblarlo.
+          Se deja en el centro de la mesa y ahí se queda, callado, hasta el final del día.
+          Entonces la tribu lo cumple.
+        </p>
+        <p class="lista-intro lista-intro-remate centrado revela">
+          <strong>Esto es exactamente eso.</strong> Deja aquí tu nombre y en diciembre lo cumplimos.
+        </p>
+
+        <div class="lista-fechas revela">
+          <div class="lista-fecha">
+            <span class="lista-fecha-dia">1 dic</span>
+            <span class="lista-fecha-txt">Se abre el saquito, por internet</span>
+          </div>
+          <div class="lista-fecha">
+            <span class="lista-fecha-dia">28 y 29 dic</span>
+            <span class="lista-fecha-txt">Nos vemos en persona</span>
+          </div>
+        </div>
+
+        <ul class="lista-ventajas revela">
+          <li><strong>Entras al círculo antes que nadie.</strong> El día que abramos, tu sitio ya está
+          guardado. Nadie hace cola por dentro.</li>
+          <li><strong>Hoy no pagas nada.</strong> Dejar tu nombre no te compromete a nada. Si en diciembre
+          no te apetece, no pasa absolutamente nada.</li>
+          <li><strong>Tres meses de tribu, no uno.</strong> A quien se lleve el juego durante el lanzamiento
+          le regalamos tres meses en la comunidad de Vivamos Despiertos. Después del lanzamiento vuelve a ser
+          un mes. No es una prisa inventada: es que a quien se lanza sin haberlo visto se le agradece de otra manera.</li>
+        </ul>
+
+        <form id="form-lista" class="captacion-form revela" novalidate>
+          <label class="visualmente-oculto" for="email-lista">Tu email</label>
+          <input type="email" id="email-lista" name="email" placeholder="tu@email.com" required autocomplete="email">
+          <button type="submit" class="boton boton-dorado">Dejar mi nombre</button>
+          <label class="captacion-consentimiento">
+            <input type="checkbox" id="consentimiento-lista" required>
+            <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener">política
+            de privacidad</a> para que me aviséis cuando se abra.</span>
+          </label>
+        </form>
+        <p class="captacion-nota centrado revela" id="form-lista-mensaje">
+          Te escribiremos dos o tres veces antes de diciembre. Ni una más. Y si te quieres bajar, se sale con un clic.
+        </p>
       </div>
     </section>
 
@@ -683,6 +741,25 @@
         <!-- PLACEHOLDER_TEXT: FAQ_TITULAR -->
         <h2 class="centrado revela">Preguntas<br><em>frecuentes</em></h2>
         <div class="faq-lista revela">
+          <details class="faq-item">
+            <summary>
+              <span>«¿Cuándo me llega si dejo mi nombre hoy?»</span>
+              <span class="faq-icono" aria-hidden="true">+</span>
+            </summary>
+            <p>El juego se abre el 1 de diciembre. Si estás en la lista, entras el primer día y lo tienes en
+            casa en 24/48h desde que lo pidas. Y si prefieres que te lo demos en mano, nos vemos el 28 o el 29.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>«¿Y lo de los tres meses de comunidad?»</span>
+              <span class="faq-icono" aria-hidden="true">+</span>
+            </summary>
+            <p>Son para quien se lleve el juego durante el lanzamiento. Pasado el lanzamiento, el regalo vuelve
+            a ser un mes. La comunidad de Vivamos Despiertos es un espacio para vernos, sin juicios, e indagar
+            juntos hacia dentro. Lo que hace el juego en una mesa, pero cada semana.</p>
+          </details>
+
           <details class="faq-item">
             <summary>
               <!-- PLACEHOLDER_TEXT: FAQ_1_PREGUNTA -->
@@ -746,7 +823,7 @@
         <p class="cierre-texto revela">No ocurre en el «cuando tenga tiempo» ni en el «el año que viene».<br>
         Ocurre ahora. En esta mesa. Con esta gente.<br>
         <strong>Atrévete a dejar el móvil, abrir el saquito y volver a sentirlo todo.</strong></p>
-        <a href="#compra" class="boton boton-dorado boton-gigante revela" data-pago>Empiezo a conectar hoy · 49€</a>
+        <a href="#lista" class="boton boton-dorado boton-gigante revela">Quiero ser de los primeros</a>
       </div>
     </section>
 
