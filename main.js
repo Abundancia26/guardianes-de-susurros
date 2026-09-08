@@ -86,20 +86,126 @@ const CONTENIDO = {
     "assets/cards/carta-16-el-juego-de-los-deseos-secretos.webp" // El Juego de los Deseos Secretos
   ],
 
-  /* — Carta de la Semana —
-     PLACEHOLDER: CARTA_SEMANA (título, imagen frontal, misión, susurro, indagación) */
+  /* ═══════════════════════════════════════════════════════════════
+     LA CARTA DE LA SEMANA
+     ─────────────────────────────────────────────────────────────
+     PARA CAMBIAR LA CARTA SOLO TOCAS UNA LÍNEA: la de "activa".
+     Pon ahí el id de la carta que quieras y guarda. Nada más.
+
+     Los ids disponibles están abajo, en "banco", uno debajo de otro:
+       el-doblaje-inconsciente · la-cadena-de-la-risa
+       el-elogio-prohibido · el-refugio-del-corazon
+       sigue-al-lider-ciego · la-ola-colectiva
+       el-circulo-de-hechizo · el-ciclo-de-la-vida
+
+     Para añadir una carta nueva: copia un bloque entero del banco,
+     pégalo debajo y cámbiale el id, el nombre y los tres textos.
+     ═══════════════════════════════════════════════════════════════ */
   cartaDeLaSemana: {
     titulo: "La Carta de la Semana",
-    imagenFrontal: "assets/cards/carta-semana-frontal.jpg",
-    mision: "La Película Muda. Dos «Actores» inician una escena en idioma inventado. " +
-            "El resto, por turnos, sois los «Dobladores» y le ponéis voz a un personaje. " +
-            "¡Luego, cambiad los roles!",
-    susurro: "Las acciones de los demás son una película muda. Tu mente es la máquina " +
-             "de doblaje que, al instante, le añade una historia. No sufres por la " +
-             "película, sino por el doblaje que te crees.",
-    autoindagacion: "Piensa en un malentendido reciente. El hecho es lo que se dijo o se hizo. " +
+
+    /* ▸▸ LA LÍNEA QUE CAMBIAS CADA SEMANA ▸▸ */
+    activa: "el-doblaje-inconsciente",
+
+    imagenPorDefecto: "assets/cards/carta-semana-frontal.jpg",
+
+    banco: [
+
+      { id: "el-doblaje-inconsciente",
+        nombre: "El Doblaje Inconsciente",
+        imagen: "assets/cards/carta-semana-frontal.jpg",
+        mision: "La Película Muda. Dos «Actores» inician una escena en idioma inventado. " +
+                "El resto, por turnos, sois los «Dobladores» y le ponéis voz a un personaje. " +
+                "¡Luego, cambiad los roles!",
+        susurro: "Las acciones de los demás son una película muda. Tu mente es la máquina " +
+                 "de doblaje que, al instante, le añade una historia. No sufres por la " +
+                 "película, sino por el doblaje que te crees.",
+        indagacion: "Piensa en un malentendido reciente. El hecho es lo que se dijo o se hizo. " +
                     "Tu «doblaje» es la historia que te contaste. " +
-                    "¿Qué te hizo pensar lo peor en ese momento?"
+                    "¿Qué te hizo pensar lo peor en ese momento?" },
+
+      { id: "la-cadena-de-la-risa",
+        nombre: "La Cadena de la Risa",
+        imagen: "",
+        mision: "El juego del ja, ja, ja. Tumbados en círculo, con las piernas abiertas y la " +
+                "cabeza de cada uno sobre la barriga del anterior. El primero dice «ja», el " +
+                "segundo «ja, ja», y así sucesivamente. El reto: dar dos vueltas sin que os " +
+                "interrumpa un ataque de risa.",
+        susurro: "A veces la sanación más profunda no nace de una conversación seria, sino de " +
+                 "una carcajada compartida hasta que te duele la barriga. La risa es el sonido " +
+                 "del alma recordando cómo jugar.",
+        indagacion: "¿Qué situación de tu vida, que ahora ves muy seria, podría beneficiarse " +
+                    "de una buena cadena de risa?" },
+
+      { id: "el-elogio-prohibido",
+        nombre: "El Elogio Prohibido",
+        imagen: "assets/cards/carta-07-el-elogio-prohibido.webp",
+        mision: "El duelo de las caras serias. Por parejas, turnaos para daros un cumplido " +
+                "sincero mirándoos a los ojos. Pero hay una regla: no podéis sonreír ni reír, " +
+                "ni apartar la mirada, ni dar una excusa. El primero que rompe la seriedad, pierde.",
+        /* ▸ ISA: copia aquí el susurro tal cual está en tu carta. Es la única
+             de las ocho que no salió leída en la grabación del 28 de junio. */
+        susurro: "",
+        indagacion: "Si no tuvieras miedo de sentirlo, ¿cuál es el elogio prohibido que tu " +
+                    "corazón necesita darse a sí mismo hoy?" },
+
+      { id: "el-refugio-del-corazon",
+        nombre: "El Refugio del Corazón",
+        imagen: "",
+        mision: "El guardián silencioso. Un viajero comparte un pequeño desafío o problema y se " +
+                "sienta. La misión del resto es construirle un refugio físico a su alrededor " +
+                "usando vuestros cuerpos. Todo en silencio. Luego, cambiad los roles.",
+        susurro: "La verdadera compasión no intenta arreglar el dolor: simplemente se sienta a " +
+                 "su lado en silencio y susurra «no estás solo en esto». No ofrece soluciones, " +
+                 "sino un refugio.",
+        indagacion: "Cuando alguien a quien quieres sufre, ¿tu primer impulso es hablar o sostener?" },
+
+      { id: "sigue-al-lider-ciego",
+        nombre: "Sigue al Líder Ciego",
+        imagen: "",
+        mision: "La serpiente viajera. Poneos en fila con las manos en los hombros del de " +
+                "delante. Todos cerráis los ojos excepto el último, que será el guía. Su misión " +
+                "es conducir a toda la serpiente en un pequeño viaje. Luego, cambiad.",
+        susurro: "A veces, para avanzar, solo necesitas confiar en el paso que te precede. Otras, " +
+                 "para guiar, debes confiar en tu propia visión. El secreto de la tribu es saber " +
+                 "cuándo ser camino y cuándo ser caminante.",
+        indagacion: "En tu vida ahora, ¿sientes que te toca ser guía marcando el camino, o parte " +
+                    "de la serpiente confiando en el proceso?" },
+
+      { id: "la-ola-colectiva",
+        nombre: "La Ola Colectiva",
+        imagen: "",
+        mision: "El vuelo del guardián. En grupo, sujetad los bordes de una sábana con un objeto " +
+                "ligero en el centro. Vuestra misión: moviéndoos como una sola ola, hacedlo volar " +
+                "tres veces y luego lanzadlo juntos para encestarlo en una caja.",
+        susurro: "Cuando las fuerzas individuales chocan, se anulan. Cuando las intenciones se " +
+                 "unen en una sola ola, hasta el objeto más pequeño puede volar. La verdadera " +
+                 "fuerza no es la tuya: es la que nace entre vosotros.",
+        indagacion: "Piensa en un objetivo de tu tribu. ¿Estáis remando cada uno en una dirección, " +
+                    "o moviéndoos como una sola ola?" },
+
+      { id: "el-circulo-de-hechizo",
+        nombre: "El Círculo de Hechizo",
+        imagen: "",
+        mision: "El hechizo del círculo. Uno de vosotros es el hechicero: inventa un hechizo, un " +
+                "nombre divertido y su efecto. Por ejemplo: «lanzo la gravedad juguetona, por un " +
+                "minuto todos nos movemos como en la luna». Repetid el nombre a la vez para " +
+                "lanzarlo, y que cada guardián lance el suyo.",
+        susurro: "No esperes a que la magia suceda: la magia espera que tú la convoques. Reúne a " +
+                 "tu círculo, nombra tu intención y declárala en voz alta. Tu voz es la varita.",
+        indagacion: "Si pudieras lanzar un solo hechizo sobre tu día de mañana, ¿cuál sería su " +
+                    "nombre y qué efecto tendría?" },
+
+      { id: "el-ciclo-de-la-vida",
+        nombre: "El Ciclo de la Vida",
+        imagen: "",
+        mision: "El mandala impermanente. Usad objetos naturales o cotidianos para crear juntos un " +
+                "hermoso mandala en el suelo. Admiradlo en silencio por un momento. Luego, a una " +
+                "señal, deshacedlo suavemente, devolviendo cada pieza a su lugar.",
+        susurro: "La belleza no está en aferrarse, sino en honrar el ciclo de crear, admirar y soltar.",
+        indagacion: "¿Qué mandala hermoso necesitas crear hoy, sabiendo que también tendrás la " +
+                    "fuerza para soltarlo?" }
+    ]
   },
 
   /* — Formulario de la Carta de la Semana —
@@ -234,14 +340,33 @@ const $ = (sel) => document.querySelector(sel);
 const movilEstrecho = matchMedia("(max-width: 760px)").matches;
 const prefiereQuietud = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+
+/* ── Qué carta está publicada ahora ──────────────────────────────
+   Devuelve la del campo "activa". Si ese id no existe (una errata,
+   por ejemplo), enseña la primera del banco en lugar de romperse. */
+function cartaPublicada() {
+  const c = CONTENIDO.cartaDeLaSemana;
+  const banco = c.banco || [];
+  if (!banco.length) return null;
+  return banco.find((x) => x.id === c.activa) || banco[0];
+}
+
 function inyectarContenido() {
   const c = CONTENIDO.cartaDeLaSemana;
+  const semana = cartaPublicada();
   const tituloCarta = document.querySelector('[data-edit="cartaTitulo"]');
   if (tituloCarta && c.titulo) tituloCarta.textContent = c.titulo;
-  $("#carta-img-frontal").src = c.imagenFrontal;
-  $("#carta-mision").textContent = c.mision;
-  $("#carta-susurro").textContent = c.susurro;
-  $("#carta-indagacion").textContent = c.autoindagacion;
+  if (semana) {
+    const img = $("#carta-img-frontal");
+    img.src = semana.imagen || c.imagenPorDefecto;
+    img.onerror = () => { img.onerror = null; img.src = c.imagenPorDefecto; };
+    img.alt = "Ilustración de la carta «" + semana.nombre + "»";
+    $("#carta-mision").textContent = semana.mision;
+    /* Si a una carta le falta el susurro, no se enseña un hueco vacío */
+    $("#carta-susurro").textContent = semana.susurro ||
+      "El susurro de esta carta se revela cuando la tienes en las manos.";
+    $("#carta-indagacion").textContent = semana.indagacion;
+  }
 
   const v = CONTENIDO.villaEtiqueta;
   $("#villa-titulo").textContent = v.titulo;
