@@ -111,9 +111,9 @@ const CONTENIDO = {
        (MailerLite, Brevo, Mailchimp, ConvertKit, Formspree…).
        "campoEmail" es el name que espera tu plataforma (Mailchimp usa "EMAIL").
        Vacío = modo demostración: muestra el mensaje de éxito sin enviar. */
-    accion: "",
+    accion: "https://assets.mailerlite.com/jsonp/2620952/forms/198022402603484161/subscribe",
     metodo: "POST",
-    campoEmail: "email",
+    campoEmail: "fields[email]",
     urlGracias: "",                   // opcional: página de gracias tras suscribirse
     mensajeExito: "✦ Hecho. Revisa tu correo: la carta va de camino.",
     mensajeError: "Algo ha fallado. Prueba de nuevo en un momento."
@@ -196,9 +196,9 @@ const CONTENIDO = {
      ▸ REEMPLAZAR "accion" por la URL del formulario embebido de MailerLite.
        Vacío = modo demostración: confirma en pantalla sin enviar nada. */
   formularioLista: {
-    accion: "",
+    accion: "https://assets.mailerlite.com/jsonp/2620952/forms/198022402603484161/subscribe",
     metodo: "POST",
-    campoEmail: "email",
+    campoEmail: "fields[email]",
     urlGracias: "",
     mensajeExito: "✦ Ya estás dentro. Te avisamos en cuanto abramos.",
     mensajeError: "Algo ha fallado. Prueba de nuevo en un momento."
@@ -838,6 +838,29 @@ function iniciarFAQ() {
   });
 }
 
+
+/* ── Envío a MailerLite sin salir de la página ──────────────────
+   Manda el email por detrás y muestra TU mensaje de éxito, en vez de
+   saltar a una pantalla de MailerLite. Usado por los dos formularios. */
+function enviarAMailerLite(cfg, email) {
+  const datos = new FormData();
+  datos.append(cfg.campoEmail || "fields[email]", email);
+  datos.append("ml-submit", "1");
+  datos.append("anticsrf", "true");
+  return fetch(cfg.accion, { method: "POST", mode: "no-cors", body: datos });
+}
+
+function exitoCaptacion(form, mensaje, textoOriginal, cfg) {
+  form.reset();
+  mensaje.textContent = cfg.mensajeExito;
+  mensaje.classList.add("captacion-exito");
+  setTimeout(() => {
+    mensaje.textContent = textoOriginal;
+    mensaje.classList.remove("captacion-exito");
+  }, 8000);
+  if (cfg.urlGracias) setTimeout(() => { location.href = cfg.urlGracias; }, 1200);
+}
+
 /* ╔══════════════════════════════════════════════════════════════╗
    ║ 9 · FORMULARIO "CARTA DE LA SEMANA"                           ║
    ╚══════════════════════════════════════════════════════════════╝ */
@@ -867,35 +890,9 @@ function iniciarFormularioCarta() {
     }
     mensaje.classList.remove("captacion-error");
 
-    /* Sin autoresponder configurado → modo demostración */
-    if (!cfg.accion) {
-      e.preventDefault();
-      form.reset();
-      mensaje.textContent = cfg.mensajeExito;
-      mensaje.classList.add("captacion-exito");
-      setTimeout(() => {
-        mensaje.textContent = textoOriginal;
-        mensaje.classList.remove("captacion-exito");
-      }, 6000);
-      return;
-    }
-
-    /* Con autoresponder: envío NATIVO del formulario (máxima compatibilidad
-       con MailerLite, Brevo, Mailchimp, ConvertKit, Formspree…). */
-    form.action = cfg.accion;
-    form.method = cfg.metodo || "POST";
-    form.email.name = cfg.campoEmail || "email";
-    if (cfg.urlGracias) {
-      /* Campos de redirección que entienden la mayoría de plataformas */
-      ["_next", "redirect", "success_url"].forEach((n) => {
-        if (!form.querySelector(`input[name="${n}"]`)) {
-          const h = document.createElement("input");
-          h.type = "hidden"; h.name = n; h.value = cfg.urlGracias;
-          form.appendChild(h);
-        }
-      });
-    }
-    /* dejamos que el navegador envíe el formulario */
+    e.preventDefault();
+    if (cfg.accion) enviarAMailerLite(cfg, email).catch(() => {});
+    exitoCaptacion(form, mensaje, textoOriginal, cfg);
   });
 }
 
@@ -927,30 +924,9 @@ function iniciarFormularioLista() {
     }
     mensaje.classList.remove("captacion-error");
 
-    if (!cfg.accion) {
-      e.preventDefault();
-      form.reset();
-      mensaje.textContent = cfg.mensajeExito;
-      mensaje.classList.add("captacion-exito");
-      setTimeout(() => {
-        mensaje.textContent = textoOriginal;
-        mensaje.classList.remove("captacion-exito");
-      }, 6000);
-      return;
-    }
-
-    form.action = cfg.accion;
-    form.method = cfg.metodo || "POST";
-    form.email.name = cfg.campoEmail || "email";
-    if (cfg.urlGracias) {
-      ["_next", "redirect", "success_url"].forEach((n) => {
-        if (!form.querySelector(`input[name="${n}"]`)) {
-          const i = document.createElement("input");
-          i.type = "hidden"; i.name = n; i.value = cfg.urlGracias;
-          form.appendChild(i);
-        }
-      });
-    }
+    e.preventDefault();
+    if (cfg.accion) enviarAMailerLite(cfg, email).catch(() => {});
+    exitoCaptacion(form, mensaje, textoOriginal, cfg);
   });
 }
 
