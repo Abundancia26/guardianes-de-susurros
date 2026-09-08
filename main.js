@@ -24,18 +24,24 @@
 const SITE_CONFIG = {
 
   /* ── EMAIL_CONTACTO ─────────────────────────────────────────
-     Tu correo real. Alimenta: enlace «Contacto» del footer y el
-     email visible. Vacío = esos enlaces avisan de que falta
-     configurar (no se muestra ningún correo inventado). */
+     ⚠️ HOY ESTÁ VACÍO Y ESO SE NOTA EN LA WEB.
+     Tu correo real. Alimenta: el enlace «Contacto» del pie, el email
+     visible del pie y el botón «Hablar sobre colaboraciones».
+     Mientras esté vacío, esos tres elementos se OCULTAN (nunca se
+     enseña un correo inventado ni un enlace que no lleva a ningún
+     sitio). En cuanto escribas aquí tu dirección entre comillas,
+     los tres vuelven a aparecer solos. Ejemplo:
+        EMAIL_CONTACTO: "info@vivamosdespiertos.com", */
   EMAIL_CONTACTO: "",
 
-  /* ── CONTACT_LINK (enlace B2B «Escríbenos aquí…») ───────────
+  /* ── CONTACT_LINK (botón «Hablar sobre colaboraciones») ─────
      Admite CUALQUIER destino; ejemplos:
        "mailto:tucorreo@dominio.com"
        "https://tudominio.com/contacto"        (formulario propio)
        "https://wa.me/34600000000"             (WhatsApp)
        "https://calendly.com/tu-usuario/30min" (Calendly)
-     Vacío = usa EMAIL_CONTACTO; si ambos vacíos, avisa. */
+     Vacío = usa EMAIL_CONTACTO; si los dos están vacíos, el botón
+     se oculta hasta que rellenes uno. */
   CONTACT_LINK: "",
 
   /* ── COOKIES / CMP ──────────────────────────────────────────
@@ -225,82 +231,88 @@ const CONTENIDO = {
     mensajeError: "Algo ha fallado. Prueba de nuevo en un momento."
   },
 
-  /* — Villa Etiqueta (serie de YouTube) — */
-  villaEtiqueta: {
-    titulo: "Villa Etiqueta",
-    descripcion: "Nuestra serie en YouTube: pequeñas historias del universo " +
-                 "Vivamos Despiertos para entrenar la mirada antes de jugar.",
-    miniatura: "assets/photos/carta-gafas.jpg",   // ▸ REEMPLAZAR por la miniatura real
-    enlace: "https://www.youtube.com/@VivamosDespiertos"  // ▸ REEMPLAZAR por el enlace real
+  /* — Canal de YouTube (bloque «Mientras llega tu saquito…») —
+     El texto vive en el HTML; aquí solo el enlace y la miniatura. */
+  canalYoutube: {
+    miniatura: "assets/photos/carta-gafas.jpg",   // ▸ opcional: cambia por una miniatura del canal
+    enlace: "https://www.youtube.com/@VivamosDespiertos"
   },
 
   /* — TESTIMONIOS (componente escalable) ─────────────────────────
      Añade, quita o reordena elementos de "items" y el carrusel se adapta
      solo: deslizable con el dedo en móvil, flechas y teclado en escritorio.
-     Tres tipos admitidos (mezclables en cualquier orden y cantidad):
-
-       { tipo: "foto",  imagen: "ruta.jpg", respaldo: "ruta-alternativa.jpg",
-         alt: "descripción", texto: "«cita»", autor: "— Nombre" }
-
-       { tipo: "video", video: "ruta.mp4", poster: "miniatura.jpg",
-         alt: "descripción", texto: "«cita»", autor: "— Nombre" }
-         (pensado para vídeo VERTICAL: se encuadra solo dentro de la tarjeta)
-
-       { tipo: "texto", texto: "«cita»", autor: "— Nombre" }
-
-     "autoplay": true hace avanzar el carrusel suavemente cada "intervaloMs"
-     (solo cuando hay más testimonios de los que caben; se pausa al tocarlo,
-     al enfocarlo o si el visitante prefiere movimiento reducido). */
+     "autoplay": true hace avanzar el carrusel cada "intervaloMs" (solo cuando
+     hay más testimonios de los que caben; se pausa al tocarlo, al enfocarlo o
+     si el visitante prefiere movimiento reducido). */
   testimonios: {
     autoplay: false,
     intervaloMs: 6000,
-    /* Citas textuales de la partida grabada el 28 de junio de 2026.
-       Cuando subas los retratos a assets/photos/, cambia "texto" por "foto"
-       y añade  imagen: "assets/photos/testimonio-<nombre>.jpg"  en cada uno. */
+
+    /* ── CÓMO SE MUESTRA CADA TESTIMONIO ───────────────────────────
+       La tarjeta enseña siempre FOTO (si la hay) + NOMBRE + FRASE.
+       El vídeo NUNCA se reproduce solo ni se carga con la página:
+       si el testimonio tiene "video", aparece un botón «Ver testimonio»
+       y el vídeo se crea al pulsarlo, dentro de una ventana.
+
+       Campos de cada testimonio (todos opcionales menos texto y nombre):
+         nombre  : "Victòria"                      ← se muestra tal cual
+         edad    : "15 años"                       ← opcional
+         texto   : "«la frase»"
+         imagen  : "assets/photos/testimonio-victoria.jpg"
+         video   : "assets/videos/testimonio-victoria.mp4"
+         alt     : "descripción de la foto"
+
+       ▸ CUANDO TENGAS LOS RETRATOS: añade la línea "imagen" a cada uno.
+       ▸ CUANDO TENGAS LOS VÍDEOS:   añade la línea "video" a cada uno.
+       Mientras no existan, la tarjeta se ve perfectamente solo con la frase. */
+
+    /* Citas textuales de la partida grabada el 28 de junio de 2026. */
     items: [
-      { tipo: "texto",
-        texto: "«Vives muy en piloto automático y no nos paramos a pensar. Te pone en situaciones que en el día a día no te las planteas.»",
-        autor: "— Victoria" },
-      { tipo: "texto",
-        texto: "«Un despertar. Básicamente. Es conocerme más y darme cuenta de muchas cosas que no había visto.»",
-        autor: "— Adriana" },
-      { tipo: "texto",
-        texto: "«No me esperaba tantas risas. Me han llenado el corazón, de verdad.»",
-        autor: "— Chenia, 15 años" },
-      { tipo: "texto",
-        texto: "«Un grupo tan dispar, que no nos conocíamos casi, y jugamos como si nos conociéramos de toda la vida.»",
-        autor: "— Ans Kari" },
-      { tipo: "texto",
-        texto: "«Me voy muy feliz, con una sonrisa de oreja a oreja.»",
-        autor: "— Quima" },
-      { tipo: "texto",
-        texto: "«Así aprenden más sobre la familia, se quieren, aprenden a trabajar mejor en equipo.»",
-        autor: "— Victoria, 9 años" },
-      { tipo: "texto",
-        texto: "«Que lo juegue. Y que me invite.»",
-        autor: "— Jesús" }
-      /* ▸ Cuando exista el vídeo, añádelo el primero:
-         { tipo: "video", video: "assets/placeholders/video_testimonios.mp4",
-           poster: "assets/photos/testimonio-portada.jpg",
-           alt: "Testimonios de la partida del 28 de junio",
-           texto: "«Un despertar. Básicamente.»", autor: "— Los que ya han jugado" } */
+      { nombre: "Victòria",
+        texto: "«Vives muy en piloto automático y no nos paramos a pensar. Te pone en situaciones que en el día a día no te las planteas.»" },
+      { nombre: "Adriana",
+        texto: "«Un despertar. Básicamente. Es conocerme más y darme cuenta de muchas cosas que no había visto.»" },
+      { nombre: "Txènia", edad: "15 años",
+        texto: "«No me esperaba tantas risas. Me han llenado el corazón, de verdad.»" },
+      { nombre: "Anskari",
+        texto: "«Un grupo tan dispar, que no nos conocíamos casi, y jugamos como si nos conociéramos de toda la vida.»" },
+      { nombre: "Quima",
+        texto: "«Me voy muy feliz, con una sonrisa de oreja a oreja.»" },
+      { nombre: "Vicky", edad: "9 años",
+        texto: "«Así aprenden más sobre la familia, se quieren, aprenden a trabajar mejor en equipo.»" },
+      { nombre: "Jesús",
+        texto: "«Que lo juegue. Y que me invite.»" }
     ]
   },
 
-  /* — PREVENTA · lista de los primeros guardianes —
-     Fechas y bonus que se muestran en el bloque #lista y en el de compra.
-     Cuando el juego salga a la venta, pon activa: false y vuelve a poner
-     urlCompra con tu pasarela: los botones vuelven a llevar a la compra. */
-  preventa: {
-    activa: true,
-    fechaOnline: "1 de diciembre",
-    fechaPresencial: "28 y 29 de diciembre",
-    bonus: "3 meses gratis en la comunidad de Vivamos Despiertos"
+  /* — Vídeo de fondo del hero (bucle corto, sin sonido) —
+     Vacío = se queda la imagen de fondo, que es lo que hay hoy. */
+  videoHero: {
+    archivo: "",                                   // ej: "assets/videos/hero-bucle.mp4"
+    poster: "assets/photos/cartas-en-mano.jpg"
   },
 
-  /* — Formulario de la lista de espera —
-     ▸ REEMPLAZAR "accion" por la URL del formulario embebido de MailerLite.
-       Vacío = modo demostración: confirma en pantalla sin enviar nada. */
+  /* — Vídeo largo de testimonios (el de 60 s) —
+     Mientras esté vacío (""), el hueco del vídeo se retira de la web:
+     así no queda un reproductor roto. Cuando lo tengas, pon aquí la ruta. */
+  videoTestimonios: {
+    archivo: "",                                   // ej: "assets/videos/testimonios-60s.mp4"
+    poster: "assets/photos/producto-completo.jpg"
+  },
+
+  /* Las fechas de la venta anticipada (1 y 2 de diciembre / 28 y 29 de
+     diciembre) están escritas directamente en index.html, en el bloque
+     «Los primeros guardianes» y en las preguntas frecuentes. Aquí no hay
+     nada que tocar: antes existía una configuración "preventa" que no
+     leía nadie y que además tenía una fecha vieja, y se ha quitado.
+     Si algún día quieres volver a la compra directa, rellena urlCompra. */
+
+  /* — Formulario de la VENTA ANTICIPADA —
+     ⚠️ PENDIENTE: hoy apunta al MISMO formulario de MailerLite que la Carta
+     de la Semana, así que las dos listas se mezclan en un solo grupo.
+     Cuando crees el segundo formulario en MailerLite («Carta de la Semana»),
+     pon su número aquí y cada lista recibirá lo suyo. Solo cambia el número
+     largo; el resto de la dirección es igual. */
   formularioLista: {
     accion: "https://assets.mailerlite.com/jsonp/2620952/forms/198022402603484161/subscribe",
     metodo: "POST",
@@ -356,24 +368,29 @@ function inyectarContenido() {
   const semana = cartaPublicada();
   const tituloCarta = document.querySelector('[data-edit="cartaTitulo"]');
   if (tituloCarta && c.titulo) tituloCarta.textContent = c.titulo;
+  /* Solo se publica la ILUSTRACIÓN de la carta activa. La Misión, el Susurro
+     y la Indagación NO se vuelcan en la web: son el contenido que la persona
+     recibe por email. El reverso de la carta es una plantilla fija en el HTML.
+     Si una semana no hay ilustración propia, se usa la imagen por defecto:
+     la sección funciona igual, sin depender de vídeos ni de material nuevo. */
   if (semana) {
     const img = $("#carta-img-frontal");
-    img.src = semana.imagen || c.imagenPorDefecto;
-    img.onerror = () => { img.onerror = null; img.src = c.imagenPorDefecto; };
-    img.alt = "Ilustración de la carta «" + semana.nombre + "»";
-    $("#carta-mision").textContent = semana.mision;
-    /* Si a una carta le falta el susurro, no se enseña un hueco vacío */
-    $("#carta-susurro").textContent = semana.susurro ||
-      "El susurro de esta carta se revela cuando la tienes en las manos.";
-    $("#carta-indagacion").textContent = semana.indagacion;
+    if (img) {
+      img.src = semana.imagen || c.imagenPorDefecto;
+      img.onerror = () => { img.onerror = null; img.src = c.imagenPorDefecto; };
+      img.alt = "Ilustración de la carta de la semana";
+    }
   }
 
-  const v = CONTENIDO.villaEtiqueta;
-  $("#villa-titulo").textContent = v.titulo;
-  $("#villa-descripcion").textContent = v.descripcion;
-  $("#villa-miniatura").src = v.miniatura;
-  $("#villa-enlace").href = v.enlace;
-  $("#villa-cta").href = v.enlace;
+  /* Canal de YouTube (bloque «Mientras llega tu saquito…») */
+  const canal = CONTENIDO.canalYoutube || {};
+  const canalEnlace = $("#canal-enlace"), canalCta = $("#canal-cta"),
+        canalMini = $("#canal-miniatura");
+  if (canal.enlace) {
+    if (canalEnlace) canalEnlace.href = canal.enlace;
+    if (canalCta) canalCta.href = canal.enlace;
+  }
+  if (canalMini && canal.miniatura) canalMini.src = canal.miniatura;
 
   /* Botones de compra: si hay pasarela configurada, todos van a ella;
      si no, llevan al bloque de compra (#compra) — nunca un enlace roto. */
@@ -383,7 +400,7 @@ function inyectarContenido() {
       el.href = destinoPago;
       if (/^https?:/i.test(destinoPago)) { el.target = "_blank"; el.rel = "noopener"; }
     } else if (el.id === "boton-comprar") {
-      /* Sin pasarela aún: el botón grande lleva al FAQ (garantía y dudas)
+      /* Sin pasarela aún: el botón grande lleva a las preguntas frecuentes
          para no dejar un enlace muerto. Configura CONTENIDO.urlCompra. */
       el.href = "#faq";
     }
@@ -397,7 +414,7 @@ function inyectarContenido() {
 
   /* ── Contacto (footer) — lee SITE_CONFIG ──
      · «Contacto» y email visible → EMAIL_CONTACTO
-     · «Escríbenos aquí…» (B2B)  → CONTACT_LINK (o EMAIL_CONTACTO de respaldo)
+     · «Hablar sobre colaboraciones» → CONTACT_LINK (o EMAIL_CONTACTO de respaldo)
      Con la variable vacía, el clic muestra un aviso editable en vez de
      un enlace roto; en cuanto rellenes SITE_CONFIG, todo funciona. */
   const email = (SITE_CONFIG.EMAIL_CONTACTO || "").trim();
@@ -408,12 +425,15 @@ function inyectarContenido() {
 
   const contacto = $("#enlace-contacto");
   const visible = $("#email-visible");
-  const b2b = $("#enlace-b2b");
+  const b2b = $("#enlace-colaboraciones");
 
-  function conectarEnlace(el, destino, avisoSiVacio) {
+  /* Regla: un enlace sin destino NO se queda en "#". O funciona, o se retira.
+     Así la web nunca tiene un botón que no lleva a ninguna parte. */
+  function conectarEnlace(el, destino, quitarSiVacio) {
     if (!el) return;
     if (destino) {
       el.href = destino;
+      el.hidden = false;
       if (/^https?:/i.test(destino)) { el.target = "_blank"; el.rel = "noopener"; }
       if (destino.startsWith("mailto:") && email) {
         /* respaldo si no hay app de correo: copiamos la dirección */
@@ -424,28 +444,38 @@ function inyectarContenido() {
           } catch (_) {}
         });
       }
-    } else {
-      el.href = "#";
-      el.addEventListener("click", (e) => { e.preventDefault(); mostrarAviso(avisoSiVacio); });
+    } else if (quitarSiVacio) {
+      /* Sin correo configurado (SITE_CONFIG.EMAIL_CONTACTO) el enlace desaparece.
+         En cuanto lo rellenes, vuelve solo. */
+      quitarSiVacio(el);
     }
   }
 
-  conectarEnlace(contacto, mailto,
-    "✏️ Configura EMAIL_CONTACTO en SITE_CONFIG (main.js)");
+  /* «Contacto» del pie: mientras no haya correo se OCULTA (no se borra), junto
+     con su separador « · ». En cuanto rellenes EMAIL_CONTACTO vuelve solo. */
+  conectarEnlace(contacto, mailto, (el) => {
+    const sep = el.previousSibling;
+    if (sep && sep.nodeType === 3) sep.textContent = sep.textContent.replace(/·\s*$/, "");
+    el.hidden = true;
+  });
 
   const destinoB2B = (SITE_CONFIG.CONTACT_LINK || "").trim() ||
     (email ? `mailto:${email}?subject=` +
       encodeURIComponent("Colaboración profesional · Guardianes de Susurros") : "");
-  conectarEnlace(b2b, destinoB2B,
-    "✏️ Configura CONTACT_LINK o EMAIL_CONTACTO en SITE_CONFIG (main.js)");
+  /* Botón de colaboraciones: si no hay destino, se oculta el botón (el bloque
+     de texto se queda, para que la sección siga contando lo que es). */
+  conectarEnlace(b2b, destinoB2B, (el) => { el.hidden = true; });
 
   if (visible) {
     if (email) {
       visible.textContent = email;
-      conectarEnlace(visible, mailto, "");
+      conectarEnlace(visible, mailto, null);
+      const linea = visible.closest(".pie-email");
+      if (linea) linea.hidden = false;
     } else {
-      /* sin correo configurado no mostramos ninguno ficticio */
-      visible.closest(".pie-email").style.display = "none";
+      /* sin correo configurado no mostramos ninguno ficticio ni un enlace muerto */
+      const linea = visible.closest(".pie-email");
+      if (linea) linea.hidden = true; else visible.hidden = true;
     }
   }
 }
@@ -466,6 +496,8 @@ function mostrarAviso(texto) {
 
 window.addEventListener("DOMContentLoaded", () => {
   inyectarContenido();
+  prepararVideoHero();
+  prepararVideoTestimonios();
   renderizarTestimonios();   /* antes de la coreografía: así las tarjetas nuevas
                                 conservan exactamente las mismas animaciones */
 
@@ -498,6 +530,7 @@ window.addEventListener("DOMContentLoaded", () => {
   iniciarCursor();
   iniciarNavegacion();
   iniciarTestimonios();
+  iniciarModalTestimonios();
   iniciarCookies();
 });
 
@@ -909,57 +942,82 @@ function ajustarOpacidadInterludio(el) {
 /* ╔══════════════════════════════════════════════════════════════╗
    ║ 8 · ACORDEÓN FAQ — despliegue suave + rotación del icono      ║
    ╚══════════════════════════════════════════════════════════════╝ */
+/* Reescrito para arreglar el fallo de «la pregunta no responde hasta que
+   recargo»: abrir() y cerrar() daban por hecho que TODA pregunta tenía un
+   .faq-respuesta. Las que no lo tenían hacían saltar un error de JavaScript
+   a mitad del clic, y ese error dejaba muerto el resto del acordeón hasta
+   recargar la página. Ahora:
+     · las funciones son únicas (no una copia por pregunta),
+     · toleran una pregunta sin .faq-respuesta,
+     · si la animación no llega a terminar, hay un plazo de seguridad. */
 function iniciarFAQ() {
-  const items = document.querySelectorAll(".faq-item");
+  const items = Array.from(document.querySelectorAll(".faq-item"));
+  if (!items.length) return;
+
+  const cuerpoDe = (el) => (el ? el.querySelector(".faq-respuesta") : null);
+
+  function abrir(el) {
+    const cuerpo = cuerpoDe(el);
+    el.open = true;
+    el.classList.add("abierta");
+    if (!cuerpo) return;                       /* sin cuerpo: apertura nativa */
+    clearTimeout(cuerpo._plazo);
+    if (prefiereQuietud) { cuerpo.style.height = "auto"; return; }
+    cuerpo.style.overflow = "hidden";
+    cuerpo.style.height = "0px";
+    requestAnimationFrame(() => {
+      cuerpo.style.transition = "height 0.45s cubic-bezier(.22,1,.36,1)";
+      cuerpo.style.height = cuerpo.scrollHeight + "px";
+      const fin = () => {
+        cuerpo.style.height = "auto";
+        cuerpo.style.overflow = "";
+        cuerpo.removeEventListener("transitionend", fin);
+      };
+      cuerpo.addEventListener("transitionend", fin);
+      cuerpo._plazo = setTimeout(fin, 700);    /* red de seguridad */
+    });
+  }
+
+  function cerrar(el) {
+    const cuerpo = cuerpoDe(el);
+    el.classList.remove("abierta");
+    if (!cuerpo || prefiereQuietud) { el.open = false; return; }
+    clearTimeout(cuerpo._plazo);
+    cuerpo.style.overflow = "hidden";
+    cuerpo.style.height = cuerpo.scrollHeight + "px";
+    requestAnimationFrame(() => {
+      cuerpo.style.transition = "height 0.4s cubic-bezier(.22,1,.36,1)";
+      cuerpo.style.height = "0px";
+      const fin = () => {
+        el.open = false;
+        cuerpo.style.height = "";
+        cuerpo.style.overflow = "";
+        cuerpo.removeEventListener("transitionend", fin);
+      };
+      cuerpo.addEventListener("transitionend", fin);
+      cuerpo._plazo = setTimeout(fin, 700);
+    });
+  }
+
   items.forEach((item) => {
     const summary = item.querySelector("summary");
-    const respuesta = item.querySelector(".faq-respuesta");
-    if (!summary || !respuesta) return;
+    if (!summary) return;
 
     summary.addEventListener("click", (e) => {
       e.preventDefault();
-
-      /* Cerrar los demás (comportamiento acordeón) */
-      items.forEach((otro) => {
-        if (otro !== item && otro.open) cerrar(otro);
-      });
-
-      item.open ? cerrar(item) : abrir(item);
+      try {
+        const estabaAbierta = item.open;
+        items.forEach((otro) => { if (otro !== item && otro.open) cerrar(otro); });
+        estabaAbierta ? cerrar(item) : abrir(item);
+      } catch (err) {
+        /* Pase lo que pase, la pregunta se abre o se cierra */
+        item.open = !item.open;
+        item.classList.toggle("abierta", item.open);
+      }
     });
 
-    function abrir(el) {
-      const cuerpo = el.querySelector(".faq-respuesta");
-      el.open = true;
-      el.classList.add("abierta");
-      if (prefiereQuietud) { cuerpo.style.height = "auto"; return; }
-      cuerpo.style.height = "0px";
-      cuerpo.style.overflow = "hidden";
-      requestAnimationFrame(() => {
-        cuerpo.style.transition = "height 0.45s cubic-bezier(.22,1,.36,1)";
-        cuerpo.style.height = cuerpo.scrollHeight + "px";
-        cuerpo.addEventListener("transitionend", function fin() {
-          cuerpo.style.height = "auto";
-          cuerpo.removeEventListener("transitionend", fin);
-        });
-      });
-    }
-
-    function cerrar(el) {
-      const cuerpo = el.querySelector(".faq-respuesta");
-      el.classList.remove("abierta");
-      if (prefiereQuietud) { el.open = false; return; }
-      cuerpo.style.overflow = "hidden";
-      cuerpo.style.height = cuerpo.scrollHeight + "px";
-      requestAnimationFrame(() => {
-        cuerpo.style.transition = "height 0.4s cubic-bezier(.22,1,.36,1)";
-        cuerpo.style.height = "0px";
-        cuerpo.addEventListener("transitionend", function fin() {
-          el.open = false;
-          cuerpo.style.height = "";
-          cuerpo.removeEventListener("transitionend", fin);
-        });
-      });
-    }
+    /* Teclado: <summary> responde a Enter y Espacio con un evento "click",
+       así que queda cubierto por el mismo manejador. */
   });
 }
 
@@ -1160,32 +1218,147 @@ function iniciarNavegacion() {
    ║ (scroll-snap), flechas y teclado en escritorio, autoplay      ║
    ║ opcional. Admite cualquier cantidad de testimonios.           ║
    ╚══════════════════════════════════════════════════════════════╝ */
+const escaparHTML = (t) => String(t ?? "").replace(/[&<>"]/g,
+  (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
 function renderizarTestimonios() {
   const pista = $("#testimonios-pista");
   const conf = CONTENIDO.testimonios;
   if (!pista || !conf || !Array.isArray(conf.items) || !conf.items.length) return;
 
-  const escapa = (t) => String(t ?? "").replace(/[&<>"]/g,
-    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const escapa = escaparHTML;
 
   pista.innerHTML = conf.items.map((it, i) => {
-    let medio = "";
-    if (it.tipo === "foto" && it.imagen) {
-      const respaldo = it.respaldo
-        ? ` onerror="this.src='${escapa(it.respaldo)}'"` : "";
-      medio = `<img src="${escapa(it.imagen)}" alt="${escapa(it.alt || "")}"
-                 class="editable-img" data-placeholder="IMAGEN_TESTIMONIO_${i + 1}"
-                 loading="lazy"${respaldo}>`;
-    } else if (it.tipo === "video" && it.video) {
-      medio = `<video src="${escapa(it.video)}"${it.poster ? ` poster="${escapa(it.poster)}"` : ""}
-                 controls playsinline preload="metadata"
-                 aria-label="${escapa(it.alt || "Vídeo de testimonio")}"></video>`;
-    }
+    /* FOTO — solo si existe el retrato. Si no, la tarjeta va sin imagen
+       (nada de placeholders grises ni de rutas que devuelvan 404). */
+    const medio = it.imagen
+      ? `<img src="${escapa(it.imagen)}" alt="${escapa(it.alt || "Retrato de " + (it.nombre || ""))}"
+             class="editable-img" data-placeholder="IMAGEN_TESTIMONIO_${i + 1}" loading="lazy">`
+      : "";
+
     const cita = it.texto ? `<blockquote>${escapa(it.texto)}</blockquote>` : "";
-    const autor = it.autor ? `<cite>${escapa(it.autor)}</cite>` : "";
+    const nombre = escapa(it.nombre || "");
+    const edad = it.edad ? `<span class="testimonio-edad">${escapa(it.edad)}</span>` : "";
+    const firma = nombre ? `<cite>${nombre}${edad}</cite>` : "";
+
+    /* VÍDEO — no se carga con la página. Solo un botón; el reproductor se
+       crea al pulsarlo, dentro de la ventana modal. */
+    const boton = it.video
+      ? `<button type="button" class="testimonio-ver" data-video="${escapa(it.video)}"
+                 data-nombre="${nombre}"${it.poster ? ` data-poster="${escapa(it.poster)}"` : ""}>
+           Ver testimonio</button>`
+      : "";
+
     return `<figure class="testimonio-foto revela">${medio}
-      <figcaption>${cita}${autor}</figcaption></figure>`;
+      <figcaption>${cita}${firma}${boton}</figcaption></figure>`;
   }).join("");
+}
+
+/* ── Ventana de vídeo de un testimonio ───────────────────────────
+   Se crea una sola vez y se reutiliza. El <video> se genera al abrir
+   y se destruye al cerrar: nunca hay varios vídeos cargados a la vez
+   y ninguno se reproduce solo. */
+function iniciarModalTestimonios() {
+  const pista = $("#testimonios-pista");
+  if (!pista) return;
+
+  let modal = null, caja = null, titulo = null, ultimoFoco = null;
+
+  function crearModal() {
+    modal = document.createElement("div");
+    modal.id = "modal-testimonio";
+    modal.hidden = true;
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-label", "Vídeo del testimonio");
+    modal.innerHTML =
+      `<div class="modal-velo" data-cerrar></div>
+       <div class="modal-caja">
+         <p class="modal-titulo"></p>
+         <div class="modal-video"></div>
+         <button type="button" class="modal-cerrar" data-cerrar aria-label="Cerrar el vídeo">✕</button>
+       </div>`;
+    document.body.appendChild(modal);
+    caja = modal.querySelector(".modal-video");
+    titulo = modal.querySelector(".modal-titulo");
+    modal.addEventListener("click", (e) => {
+      if (e.target.hasAttribute("data-cerrar")) cerrar();
+    });
+  }
+
+  function abrir(src, nombre, poster) {
+    if (!modal) crearModal();
+    ultimoFoco = document.activeElement;
+    titulo.textContent = nombre || "";
+    caja.innerHTML =
+      `<video src="${escaparHTML(src)}"${poster ? ` poster="${escaparHTML(poster)}"` : ""}
+              controls playsinline preload="metadata"></video>`;
+    modal.hidden = false;
+    document.body.classList.add("modal-abierto");
+    const cerrarBtn = modal.querySelector(".modal-cerrar");
+    if (cerrarBtn) cerrarBtn.focus();
+  }
+
+  function cerrar() {
+    if (!modal || modal.hidden) return;
+    const v = caja.querySelector("video");
+    if (v) { try { v.pause(); } catch (_) {} }
+    caja.innerHTML = "";               /* descarga el vídeo de memoria */
+    modal.hidden = true;
+    document.body.classList.remove("modal-abierto");
+    if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
+  }
+
+  pista.addEventListener("click", (e) => {
+    const b = e.target.closest(".testimonio-ver");
+    if (!b) return;
+    abrir(b.dataset.video, b.dataset.nombre, b.dataset.poster);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!modal || modal.hidden) return;
+    if (e.key === "Escape") { cerrar(); return; }
+    /* El tabulador se queda dentro de la ventana mientras está abierta */
+    if (e.key === "Tab") {
+      const focos = modal.querySelectorAll("button, video, [href], [tabindex]:not([tabindex='-1'])");
+      if (!focos.length) return;
+      const primero = focos[0], ultimo = focos[focos.length - 1];
+      if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+      else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+    }
+  });
+}
+
+/* Vídeo de fondo del hero: solo se monta si hay archivo */
+function prepararVideoHero() {
+  const conf = CONTENIDO.videoHero || {};
+  const archivo = (conf.archivo || "").trim();
+  if (!archivo) return;                            /* se queda la imagen */
+  const img = $("#hero-fondo");
+  if (!img || !img.parentElement) return;
+  const video = document.createElement("video");
+  video.className = "editable-video";
+  video.setAttribute("data-placeholder", "VIDEO_HERO");
+  video.autoplay = true; video.muted = true; video.loop = true;
+  video.playsInline = true;
+  if (conf.poster) video.poster = conf.poster;
+  video.innerHTML = `<source src="${escaparHTML(archivo)}" type="video/mp4">`;
+  img.parentElement.replaceChild(video, img);
+}
+
+/* El vídeo largo solo existe si hay archivo; si no, se retira el hueco */
+function prepararVideoTestimonios() {
+  const figura = document.querySelector(".testimonios-video");
+  if (!figura) return;
+  const conf = CONTENIDO.videoTestimonios || {};
+  const archivo = (conf.archivo || "").trim();
+  if (!archivo) { figura.remove(); return; }
+  figura.innerHTML =
+    `<video class="editable-video" data-placeholder="VIDEO_TESTIMONIOS" controls preload="none"
+            poster="${escaparHTML(conf.poster || "")}">
+       <source src="${escaparHTML(archivo)}" type="video/mp4">
+       Tu navegador no puede reproducir este vídeo.
+     </video>`;
 }
 
 function iniciarTestimonios() {

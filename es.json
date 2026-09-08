@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "idioma": "es",
+    "nota": "Archivo fuente para traductores. Cada clave corresponde a un bloque de la web (los comentarios PLACEHOLDER_TEXT de index.html usan los mismos nombres). Para añadir un idioma: duplica este archivo como en.json, it.json, fr.json o de.json, traduce los valores y sigue docs/I18N.md. NO se carga en la web actual: la versión en español vive en el HTML."
+  },
+  "meta": {
+    "title": "Guardianes de Susurros — Del piloto automático al latido | Vivamos Despiertos",
+    "description": "La experiencia para una verdadera conexión humana. 49 cartas para salir de la prisa y el móvil, reír a carcajadas y volver a conectar. Envío 24/48h · De 1 a 10+ jugadores · A partir de 8 años."
+  },
+  "apertura": {
+    "marca": "Vivamos Despiertos presenta",
+    "titulo": "Guardianes de Susurros",
+    "subtitulo": "Un juego para volver a estar aquí.",
+    "pista_scroll": "Desliza para despertar"
+  },
+  "nav": {
+    "como_funciona": "Cómo funciona",
+    "carta_semana": "La Carta de la Semana",
+    "testimonios": "Testimonios",
+    "faq": "Preguntas",
+    "preventa": "Quiero entrar en la venta anticipada"
+  },
+  "hero": {
+    "eyebrow": "La experiencia para una verdadera conexión humana",
+    "titular": "Del piloto automático al latido.",
+    "subtitulo": "El juego que os invita a salir de la prisa y el móvil, para volver a las risas a carcajadas y a la conexión de verdad.",
+    "claim": "No predice el futuro. Te invita a despertar en el presente.",
+    "cta": "Quiero entrar en la venta anticipada",
+    "cta_secundario": "¿Cómo funciona? ↓",
+    "microtexto": "✦ Venta anticipada: 1 y 2 de diciembre | 👥 De 1 a 10+ jugadores | 🎂 A partir de 8 años"
+  },
+  "carta_semana": {
+    "eyebrow": "El susurro de esta semana",
+    "titular": "La Carta de la Semana",
+    "intro": "Cada semana abrimos una nueva carta de Guardianes de Susurros. Una pequeña invitación a salir del piloto automático, observar lo que ocurre en ti y llevar una nueva mirada a tu vida. Observa. Experimenta. Descubre.",
+    "pista_carta": "✦ pulsa la carta para girarla ✦",
+    "oferta": "Déjanos tu email y cada semana recibirás una nueva experiencia de Guardianes de Susurros.",
+    "campo_email": "Tu email",
+    "cta": "Llévate la carta gratis",
+    "microcopy": "Te enviaremos la nueva experiencia semanal.",
+    "microcopy_baja": "Si te parece interesante o te aporta, te interesará la siguiente; y si no te aporta nada, siéntete libre para cancelar la suscripción cuando lo desees."
+  },
+  "preventa": {
+    "eyebrow": "Todavía no hemos abierto el saquito",
+    "titular": "Los primeros guardianes.",
+    "fecha_online": "1 y 2 de diciembre",
+    "fecha_presencial": "28 y 29 de diciembre",
+    "campo_email": "Tu email",
+    "cta": "Quiero entrar en la venta anticipada"
+  },
+  "testimonios": {
+    "titular": "Lo que dicen los que ya han jugado.",
+    "ver_testimonio": "Ver testimonio",
+    "items": [
+      { "texto": "«Vives muy en piloto automático y no nos paramos a pensar. Te pone en situaciones que en el día a día no te las planteas.»", "nombre": "Victòria" },
+      { "texto": "«Un despertar. Básicamente. Es conocerme más y darme cuenta de muchas cosas que no había visto.»", "nombre": "Adriana" },
+      { "texto": "«No me esperaba tantas risas. Me han llenado el corazón, de verdad.»", "nombre": "Txènia", "edad": "15 años" },
+      { "texto": "«Un grupo tan dispar, que no nos conocíamos casi, y jugamos como si nos conociéramos de toda la vida.»", "nombre": "Anskari" },
+      { "texto": "«Me voy muy feliz, con una sonrisa de oreja a oreja.»", "nombre": "Quima" },
+      { "texto": "«Así aprenden más sobre la familia, se quieren, aprenden a trabajar mejor en equipo.»", "nombre": "Vicky", "edad": "9 años" },
+      { "texto": "«Que lo juegue. Y que me invite.»", "nombre": "Jesús" }
+    ]
+  },
+  "faq": {
+    "titular": "Preguntas frecuentes",
+    "items": [
+      { "pregunta": "¿Cuándo me llega si entro hoy en la venta anticipada?", "respuesta": "La venta anticipada es el 1 y 2 de diciembre. Si estás dentro, entras el primer día y lo tienes en casa en 24/48h desde que lo pidas. Y si prefieres que te lo demos en mano, nos vemos el 28 o el 29." },
+      { "pregunta": "¿Y lo de los tres meses de comunidad?", "respuesta": "Son para quien se lleve el juego durante el lanzamiento. Pasado el lanzamiento, el regalo vuelve a ser un mes. La comunidad de Vivamos Despiertos es un espacio para vernos, sin juicios, e indagar juntos hacia dentro. Lo que hace el juego en una mesa, pero cada semana." },
+      { "pregunta": "¿Necesito saber de meditación o crecimiento personal?", "respuesta": "Para nada. Si sabes reír y hablar, sabes jugar." },
+      { "pregunta": "¿Y si somos más de 10?", "respuesta": "Podéis jugar todos juntos o dividiros en grupos de 6-8. ¡Cuanta más gente, más divertido!" },
+      { "pregunta": "¿Necesito jugar con otras personas?", "respuesta": "No siempre. Algunas cartas pueden llevarse a una experiencia individual y otras están pensadas para compartirlas con tu tribu. La idea es que la carta te invite a observar, experimentar y descubrir; tú decides cómo llevarla a tu vida." },
+      { "pregunta": "¿Las cartas se pueden jugar más de una vez?", "respuesta": "Sí. Una misma carta puede revelarte algo diferente en distintos momentos de tu vida. Lo que ves hoy puede no ser lo mismo que veas dentro de unas semanas." },
+      { "pregunta": "¿Es apto para niños?", "respuesta": "Sí, a partir de 8 años. De hecho, ellos son los maestros del juego." }
+    ]
+  },
+  "compra": {
+    "titular": "Lo que vas a recibir en casa:",
+    "cartas": "49 cartas ilustradas a doble cara",
+    "cta": "Quiero entrar en la venta anticipada"
+  },
+  "canal_youtube": {
+    "eyebrow": "Mientras llega tu saquito…",
+    "titular": "Descubre otras historias de Guardianes",
+    "texto": "En nuestro canal de YouTube encontrarás partidas, experiencias, preguntas y pequeños momentos para seguir saliendo del piloto automático. No necesitas saber las reglas. Solo entrar, mirar y dejar que algo te encuentre.",
+    "cta": "Ver el canal de YouTube"
+  },
+  "colaboraciones": {
+    "eyebrow": "Colaboraciones profesionales",
+    "titular": "¿Eres coach, psicólogo o formador?",
+    "texto": "Descubre cómo podemos colaborar para llevar Guardianes de Susurros a tus sesiones y procesos.",
+    "cta": "Hablar sobre colaboraciones"
+  },
+  "footer": {
+    "marca": "Guardianes de Susurros · una experiencia de Vivamos Despiertos",
+    "contacto": "Contacto",
+    "configurar_cookies": "Configurar cookies"
+  }
+}

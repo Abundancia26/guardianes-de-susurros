@@ -28,19 +28,27 @@ En `main.js`, objeto **CONTENIDO** (líneas iniciales, cada campo lleva ▸ REEM
 | Campo | Qué poner |
 |---|---|
 | `urlCompra` | URL de tu pasarela (Stripe Payment Link, Shopify…). Vacía = los botones llevan al bloque de compra, nunca hay enlaces rotos. |
-| `formularioCarta.accion` | URL del formulario de tu autoresponder (MailerLite, Brevo, Mailchimp…). `campoEmail` = name del campo (Mailchimp usa "EMAIL"). `urlGracias` = página de gracias opcional. Vacía = modo demo. |
-| `emailContacto` | Tu email (alimenta «Contacto» y el enlace B2B del footer). |
+| `formularioCarta.accion` | URL del formulario de MailerLite de **la carta semanal**. `campoEmail` = name del campo. `urlGracias` = página de gracias opcional. Vacía = modo demo. |
+| `formularioLista.accion` | URL del formulario de MailerLite de **la venta anticipada**. ⚠️ Hoy apunta al mismo formulario que la carta semanal: hay que poner aquí el número del segundo formulario para que las dos listas no se mezclen. |
+| `SITE_CONFIG.EMAIL_CONTACTO` | Tu email (alimenta «Contacto», el email del pie y el botón de colaboraciones). Vacío = esos tres elementos se ocultan. |
+| `SITE_CONFIG.CONTACT_LINK` | Destino alternativo del botón de colaboraciones (formulario propio, WhatsApp, Calendly…). |
 | `redes.instagram` / `.tiktok` / `.youtube` | URLs de tus perfiles y canal. |
 | `analytics.googleAnalyticsID` | «G-XXXX…». Solo se carga si el visitante ACEPTA cookies. |
-| `cartaDeLaSemana` | Título, imagen, misión, susurro e indagación de la carta vigente. |
-| `villaEtiqueta` | Título, descripción, miniatura y enlace del episodio. |
+| `cartaDeLaSemana.activa` | El id de la carta de esta semana. Solo se publica su **ilustración**: la misión, el susurro y la indagación viajan por email, no en la web. |
+| `canalYoutube` | Miniatura y enlace del canal (bloque «Mientras llega tu saquito…»). |
+| `videoHero.archivo` / `videoTestimonios.archivo` | Rutas de los vídeos. **Vacías = el hueco desaparece** (ni reproductor vacío ni 404). |
+| `testimonios.items` | Cada testimonio: `nombre`, `texto`, y opcionalmente `edad`, `imagen` (retrato) y `video` (abre en ventana al pulsar «Ver testimonio»). |
 | `cartasUniverso` | Rutas de las cartas del túnel 3D (añade las que exportes, ratio ~2:3.1 con marco). |
 
-Archivos por subir a `assets/placeholders/` (mientras no existan, hay respaldo automático):
-- `video_hero.mp4` (8-10 s, mudo, bucle) y `video_testimonios.mp4` (45-60 s)
-- `tension-fondo.jpg` (escena de mesa con pantallas; se intuye tras el velo verde)
-- `paso-1..4-*.jpg` · `publico-*.jpg` (5) · `testimonio-1..4.jpg`
-- `producto-flatlay.jpg` · `cierre-atardecer.jpg` (opcional: se funde sobre el fondo mágico)
+Archivos por subir (mientras no existan, la web funciona igual):
+- **Vídeos:** súbelos donde quieras y escribe la ruta en `videoHero.archivo` y
+  `videoTestimonios.archivo`. Sin ruta, esos huecos no se pintan.
+- **Retratos de los testimonios:** súbelos a `assets/photos/` y añade `imagen:` a cada
+  testimonio en `main.js`. Sin retrato, la tarjeta se ve bien solo con la frase.
+- **Fondos opcionales** (`tension-fondo.jpg`, `cierre-atardecer.jpg`): sus `<img>` están
+  **comentados** en `index.html` para no pedir archivos que no existen. Cuando los subas,
+  descomenta las dos líneas que hay junto a cada comentario.
+- Ya están: `paso-1..4-*.jpg` · `publico-*.jpg` (5) · `producto-flatlay.jpg`
 
 ## Cómo editar sin romper nada
 
@@ -69,9 +77,11 @@ y la analítica solo se carga tras activación expresa.
 **Cumplimiento UE/España incluido:** banner con las tres opciones a igual prominencia,
 panel por categorías, consentimiento revocable (art. 7.3 RGPD), casilla de aceptación de
 la política de privacidad en el formulario de captación, y 4 plantillas legales
-(rellena los [CORCHETES] y revísalas con tu asesoría). Los enlaces de Contacto y B2B
-abren tu app de correo Y copian el email al portapapeles con un aviso, para que
-funcionen aunque el visitante no tenga cliente de correo configurado.
+(rellena los [CORCHETES] y revísalas con tu asesoría). El enlace de Contacto y el botón
+de colaboraciones abren tu app de correo Y copian el email al portapapeles con un aviso,
+para que funcionen aunque el visitante no tenga cliente de correo configurado.
+⚠️ Los dos están ocultos mientras `SITE_CONFIG.EMAIL_CONTACTO` esté vacío: hoy la web
+no ofrece ninguna vía de contacto. Es lo primero que hay que rellenar antes de publicar.
 
 ## Publicar
 
