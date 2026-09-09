@@ -223,7 +223,7 @@ const CONTENIDO = {
        (MailerLite, Brevo, Mailchimp, ConvertKit, Formspree…).
        "campoEmail" es el name que espera tu plataforma (Mailchimp usa "EMAIL").
        Vacío = modo demostración: muestra el mensaje de éxito sin enviar. */
-    accion: "https://assets.mailerlite.com/jsonp/2620952/forms/198022402603484161/subscribe",
+    accion: "https://assets.mailerlite.com/jsonp/2620952/forms/198036476797126343/subscribe",
     metodo: "POST",
     campoEmail: "fields[email]",
     urlGracias: "",                   // opcional: página de gracias tras suscribirse
