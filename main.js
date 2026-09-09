@@ -32,7 +32,7 @@ const SITE_CONFIG = {
      sitio). En cuanto escribas aquí tu dirección entre comillas,
      los tres vuelven a aparecer solos. Ejemplo:
         EMAIL_CONTACTO: "info@vivamosdespiertos.com", */
-  EMAIL_CONTACTO: "",
+  EMAIL_CONTACTO: "guardianes@vivamosdespiertos.com",
 
   /* ── CONTACT_LINK (botón «Hablar sobre colaboraciones») ─────
      Admite CUALQUIER destino; ejemplos:
@@ -42,7 +42,7 @@ const SITE_CONFIG = {
        "https://calendly.com/tu-usuario/30min" (Calendly)
      Vacío = usa EMAIL_CONTACTO; si los dos están vacíos, el botón
      se oculta hasta que rellenes uno. */
-  CONTACT_LINK: "",
+  CONTACT_LINK: "mailto:hola@vivamosdespiertos.com",
 
   /* ── COOKIES / CMP ──────────────────────────────────────────
      La web trae su propio panel de consentimiento (RGPD) que ya
