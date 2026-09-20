@@ -296,7 +296,7 @@ const CONTENIDO = {
      Mientras esté vacío (""), el hueco del vídeo se retira de la web:
      así no queda un reproductor roto. Cuando lo tengas, pon aquí la ruta. */
   videoTestimonios: {
-    archivo: "",                                   // ej: "assets/videos/testimonios-60s.mp4"
+        archivo: "assets/placeholders/video_testimonios.mp4",
     poster: "assets/photos/producto-completo.jpg"
   },
 
