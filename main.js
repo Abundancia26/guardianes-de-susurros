@@ -228,7 +228,7 @@ const CONTENIDO = {
     campoEmail: "fields[email]",
     urlGracias: "",                   // opcional: página de gracias tras suscribirse
     mensajeExito: "✦ Hecho. Revisa tu correo: la carta va de camino.",
-    mensajeError: "Algo ha fallado. Prueba de nuevo en un momento."
+    mensajeError: "No hemos podido apuntarte. Revisa tu conexión e inténtalo de nuevo; si sigue fallando, escríbenos."
   },
 
   /* — Canal de YouTube (bloque «Mientras llega tu saquito…») —
@@ -300,8 +300,8 @@ const CONTENIDO = {
     poster: "assets/photos/producto-completo.jpg"
   },
 
-  /* Las fechas de la venta anticipada (1 y 2 de diciembre / 28 y 29 de
-     diciembre) están escritas directamente en index.html, en el bloque
+  /* Las fechas (preventa online 1–7 de diciembre / Fira de Santa Llúcia de
+     Canyelles 5 y 6 de diciembre) están escritas directamente en index.html, en el bloque
      «Los primeros guardianes» y en las preguntas frecuentes. Aquí no hay
      nada que tocar: antes existía una configuración "preventa" que no
      leía nadie y que además tenía una fecha vieja, y se ha quitado.
@@ -319,7 +319,7 @@ const CONTENIDO = {
     campoEmail: "fields[email]",
     urlGracias: "",
     mensajeExito: "✦ Ya estás dentro. Te avisamos en cuanto abramos.",
-    mensajeError: "Algo ha fallado. Prueba de nuevo en un momento."
+    mensajeError: "No hemos podido apuntarte. Revisa tu conexión e inténtalo de nuevo; si sigue fallando, escríbenos."
   },
 
   /* — Enlace del botón de compra —
@@ -331,8 +331,8 @@ const CONTENIDO = {
   /* — Contacto: se configura arriba, en SITE_CONFIG.EMAIL_CONTACTO — */
   get emailContacto() { return SITE_CONFIG.EMAIL_CONTACTO; },
   redes: {
-    instagram: "https://www.instagram.com/vivamosdespiertos",   // ▸ REEMPLAZAR
-    tiktok:    "https://www.tiktok.com/@vivamosdespiertos",     // ▸ REEMPLAZAR
+    instagram: "https://www.instagram.com/guardianesdesusurros",
+    tiktok:    "https://www.tiktok.com/@guardianesdesusurr",
     youtube:   "https://www.youtube.com/@VivamosDespiertos"     // ▸ REEMPLAZAR
   },
 
@@ -1023,14 +1023,40 @@ function iniciarFAQ() {
 
 
 /* ── Envío a MailerLite sin salir de la página ──────────────────
-   Manda el email por detrás y muestra TU mensaje de éxito, en vez de
-   saltar a una pantalla de MailerLite. Usado por los dos formularios. */
+   Manda el email y ESPERA la respuesta de MailerLite. Devuelve una promesa que
+   solo se resuelve si MailerLite confirma el alta (success:true). Si MailerLite
+   rechaza el email, si no responde o si no hay conexión, la promesa se rechaza
+   y el formulario muestra el mensaje de error. Usado por los dos formularios. */
 function enviarAMailerLite(cfg, email) {
   const datos = new FormData();
   datos.append(cfg.campoEmail || "fields[email]", email);
   datos.append("ml-submit", "1");
   datos.append("anticsrf", "true");
-  return fetch(cfg.accion, { method: "POST", mode: "no-cors", body: datos });
+  return fetch(cfg.accion, { method: "POST", body: datos, headers: { Accept: "application/json" } })
+    .then((r) => r.json().catch(() => ({})).then((json) => {
+      if (r.ok && json && json.success === true) return json;
+      const err = new Error("MailerLite no confirmó el alta");
+      err.detalle = json;
+      throw err;
+    }));
+}
+
+/* Estado "enviando": bloquea el botón para evitar envíos dobles */
+function estadoEnvio(form, mensaje, enviando) {
+  const boton = form.querySelector('button[type="submit"]');
+  if (boton) boton.disabled = enviando;
+  form.setAttribute("aria-busy", enviando ? "true" : "false");
+  if (enviando && mensaje) {
+    mensaje.textContent = "Enviando…";
+    mensaje.classList.remove("captacion-error", "captacion-exito");
+  }
+}
+
+/* Error visible y claro (se queda hasta el siguiente intento) */
+function errorCaptacion(mensaje, cfg) {
+  mensaje.textContent = cfg.mensajeError || "Algo ha fallado. Prueba de nuevo en un momento.";
+  mensaje.classList.remove("captacion-exito");
+  mensaje.classList.add("captacion-error");
 }
 
 function exitoCaptacion(form, mensaje, textoOriginal, cfg) {
@@ -1074,8 +1100,11 @@ function iniciarFormularioCarta() {
     mensaje.classList.remove("captacion-error");
 
     e.preventDefault();
-    if (cfg.accion) enviarAMailerLite(cfg, email).catch(() => {});
-    exitoCaptacion(form, mensaje, textoOriginal, cfg);
+    if (!cfg.accion) { errorCaptacion(mensaje, cfg); return; }
+    estadoEnvio(form, mensaje, true);
+    enviarAMailerLite(cfg, email)
+      .then(() => { estadoEnvio(form, mensaje, false); exitoCaptacion(form, mensaje, textoOriginal, cfg); })
+      .catch(() => { estadoEnvio(form, mensaje, false); errorCaptacion(mensaje, cfg); });
   });
 }
 
@@ -1108,8 +1137,11 @@ function iniciarFormularioLista() {
     mensaje.classList.remove("captacion-error");
 
     e.preventDefault();
-    if (cfg.accion) enviarAMailerLite(cfg, email).catch(() => {});
-    exitoCaptacion(form, mensaje, textoOriginal, cfg);
+    if (!cfg.accion) { errorCaptacion(mensaje, cfg); return; }
+    estadoEnvio(form, mensaje, true);
+    enviarAMailerLite(cfg, email)
+      .then(() => { estadoEnvio(form, mensaje, false); exitoCaptacion(form, mensaje, textoOriginal, cfg); })
+      .catch(() => { estadoEnvio(form, mensaje, false); errorCaptacion(mensaje, cfg); });
   });
 }
 

@@ -27,7 +27,7 @@
     "claim": "No predice el futuro. Te invita a despertar en el presente.",
     "cta": "Quiero entrar en la venta anticipada",
     "cta_secundario": "¿Cómo funciona? ↓",
-    "microtexto": "✦ Venta anticipada: 1 y 2 de diciembre | 👥 De 1 a 10+ jugadores | 🎂 A partir de 8 años"
+    "microtexto": "✦ Venta anticipada: 1 al 7 de diciembre | 👥 De 1 a 10+ jugadores | 🎂 A partir de 8 años"
   },
   "carta_semana": {
     "eyebrow": "El susurro de esta semana",
@@ -43,8 +43,8 @@
   "preventa": {
     "eyebrow": "Todavía no hemos abierto el saquito",
     "titular": "Los primeros guardianes.",
-    "fecha_online": "1 y 2 de diciembre",
-    "fecha_presencial": "28 y 29 de diciembre",
+    "fecha_online": "1 al 7 de diciembre",
+    "fecha_presencial": "5 y 6 de diciembre (Fira de Santa Llúcia de Canyelles)",
     "campo_email": "Tu email",
     "cta": "Quiero entrar en la venta anticipada"
   },
@@ -64,7 +64,7 @@
   "faq": {
     "titular": "Preguntas frecuentes",
     "items": [
-      { "pregunta": "¿Cuándo me llega si entro hoy en la venta anticipada?", "respuesta": "La venta anticipada es el 1 y 2 de diciembre. Si estás dentro, entras el primer día y lo tienes en casa en 24/48h desde que lo pidas. Y si prefieres que te lo demos en mano, nos vemos el 28 o el 29." },
+      { "pregunta": "¿Cuándo me llega si entro hoy en la venta anticipada?", "respuesta": "La venta anticipada es del 1 al 7 de diciembre. Si estás dentro, entras el primer día y lo tienes en casa en 24/48h desde que lo pidas. Y si prefieres que te lo demos en mano, nos vemos el 5 o el 6 de diciembre en la Fira de Santa Llúcia de Canyelles." },
       { "pregunta": "¿Y lo de los tres meses de comunidad?", "respuesta": "Son para quien se lleve el juego durante el lanzamiento. Pasado el lanzamiento, el regalo vuelve a ser un mes. La comunidad de Vivamos Despiertos es un espacio para vernos, sin juicios, e indagar juntos hacia dentro. Lo que hace el juego en una mesa, pero cada semana." },
       { "pregunta": "¿Necesito saber de meditación o crecimiento personal?", "respuesta": "Para nada. Si sabes reír y hablar, sabes jugar." },
       { "pregunta": "¿Y si somos más de 10?", "respuesta": "Podéis jugar todos juntos o dividiros en grupos de 6-8. ¡Cuanta más gente, más divertido!" },
