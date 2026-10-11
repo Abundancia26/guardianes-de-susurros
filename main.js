@@ -42,7 +42,7 @@ const SITE_CONFIG = {
        "https://calendly.com/tu-usuario/30min" (Calendly)
      Vacío = usa EMAIL_CONTACTO; si los dos están vacíos, el botón
      se oculta hasta que rellenes uno. */
-  CONTACT_LINK: "mailto:hola@vivamosdespiertos.com",
+  CONTACT_LINK: "mailto:guardianes@vivamosdespiertos.com",
 
   /* ── COOKIES / CMP ──────────────────────────────────────────
      La web trae su propio panel de consentimiento (RGPD) que ya
@@ -53,6 +53,11 @@ const SITE_CONFIG = {
        CMP: "cookieyes"   | "cookiebot" | "complianz"
        CMP: "custom" + CMP_ABRIR: función propia */
   COOKIES: {
+    /* Interruptor del banner. false = banner y enlace «Configurar cookies» desactivados
+       (la web no usa analítica ni cookies de seguimiento). El código sigue intacto:
+       pon true para reactivarlo si algún día añades analítica, anuncios o píxeles,
+       y actualiza antes la página cookies.html. */
+    BANNER_ACTIVO: false,
     CMP: "",
     CMP_ABRIR: null   // ej: () => miGestor.abrirPanel()
   }
@@ -300,8 +305,7 @@ const CONTENIDO = {
     poster: "assets/photos/producto-completo.jpg"
   },
 
-  /* Las fechas (preventa online 1–7 de diciembre / Fira de Santa Llúcia de
-     Canyelles 5 y 6 de diciembre) están escritas directamente en index.html, en el bloque
+  /* Las fechas de la venta anticipada online (1–7 de diciembre) están escritas directamente en index.html, en el bloque
      «Los primeros guardianes» y en las preguntas frecuentes. Aquí no hay
      nada que tocar: antes existía una configuración "preventa" que no
      leía nadie y que además tenía una fecha vieja, y se ha quitado.
@@ -1453,6 +1457,10 @@ function iniciarTestimonios() {
 function iniciarCookies() {
   const banner = $("#cookies-banner");
   if (!banner) return;
+  /* Banner desactivado: no se muestra nada ni se carga analítica. */
+  if (!SITE_CONFIG.COOKIES.BANNER_ACTIVO) return;
+  const envoltorio = $("#cookies-reabrir-wrap");
+  if (envoltorio) envoltorio.hidden = false;
 
   const CLAVE = "gds-cookies-v2";
   const leer = () => {
